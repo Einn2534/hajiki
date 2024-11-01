@@ -119,14 +119,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51eb0552ed9195e48a8660c99b830bd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5000
+  isSwiping: 0
+  speed: 25
+  chargeTime: 2
+  isCharge: 0
+  chargeTimeStart: 0
+  chargeTimeEnd: 0
   nakami_num: 3
   range: 4
   herbivore_prefab: {fileID: 5253544965284999457, guid: 622779c639d3f6b479f9778930967b05,
     type: 3}
-  LD_Limit: {x: 4.5, y: 0, z: 8}
-  RU_Limit: {x: -4.5, y: 0, z: -8}
+  Limit_LD: {x: 0, y: 0, z: 0}
+  Limit_RU: {x: 0, y: 0, z: 0}
   rb: {fileID: 0}
+  sliderPrefab: {fileID: 6820640393007818112, guid: 98fc5bc3ea2c97d4782213e06bda3e04,
+    type: 3}
 --- !u!54 &534546114543834701
 Rigidbody:
   m_ObjectHideFlags: 0

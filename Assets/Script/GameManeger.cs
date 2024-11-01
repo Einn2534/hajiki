@@ -11,9 +11,9 @@ public class GameManeger : MonoBehaviour
     [SerializeField]
     int num;
     [SerializeField]
-    Vector3 spawnAreaMin;  // スポーン位置の最小範囲
+    public Vector3 spawnAreaLD;  // スポーン位置の範囲左下
     [SerializeField]
-    Vector3 spawnAreaMax;  // スポーン位置の最大範囲
+    public Vector3 spawnAreaRU;  // スポーン位置の範囲右上
 
     // Start is called before the first frame update
     void Start()
@@ -31,9 +31,9 @@ public class GameManeger : MonoBehaviour
             {
                 // ランダムな位置を生成
                 Vector3 randomPosition = new Vector3(
-                    Random.Range(spawnAreaMin.x, spawnAreaMax.x),
+                    Random.Range(spawnAreaRU.x, spawnAreaLD.x),
                     1,
-                    Random.Range(spawnAreaMin.z, spawnAreaMax.z)
+                    Random.Range(spawnAreaRU.z, spawnAreaLD.z)
                 );
 
                 // kabidaniをランダムな位置に生成
