@@ -50,7 +50,7 @@ public class ShrinkOnSwipe : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            Destroy(this.gameObject);
             transform.localScale = new Vector3(minScale, minScale, minScale);
         }
     }

@@ -7,39 +7,44 @@ public class GameManeger : MonoBehaviour
     [SerializeField]
     int chaild;
     [SerializeField]
-    GameObject kabidani;
+    GameObject[] kabidani;
     [SerializeField]
     int num;
     [SerializeField]
-    public Vector3 spawnAreaLD;  // スポーン位置の範囲左下
+    public Vector3 spawnAreaLD;  
     [SerializeField]
-    public Vector3 spawnAreaRU;  // スポーン位置の範囲右上
+    public Vector3 spawnAreaRU;  
 
-    // Start is called before the first frame update
+
     void Start()
     {
         chaild = this.transform.childCount;
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
         chaild = this.transform.childCount;
         if (chaild == 0)
         {
-            for (int i = 0; i < num; i++)
-            {
-                // ランダムな位置を生成
+            
+        }
+    }
+
+    void Spawn()
+    {
+        for (int i = 0; i < num; i++)
+        {
+                
                 Vector3 randomPosition = new Vector3(
                     Random.Range(spawnAreaRU.x, spawnAreaLD.x),
                     1,
                     Random.Range(spawnAreaRU.z, spawnAreaLD.z)
                 );
 
-                // kabidaniをランダムな位置に生成
-                GameObject obj = Instantiate(kabidani, randomPosition, Quaternion.identity);
+                
+                GameObject obj = Instantiate(kabidani[Random.Range(0, kabidani.Length)], randomPosition, Quaternion.identity);
                 obj.transform.parent = this.transform;
-            }
         }
     }
 }
