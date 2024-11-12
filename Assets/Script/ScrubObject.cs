@@ -1,24 +1,42 @@
 using UnityEngine;
 
-public class ShrinkOnSwipe : MonoBehaviour
+public class ScrubObject : MonoBehaviour
 {
     Vector2 previousTouchPos;
     bool isTouching = false;
+    bool isTargetObject = false; // タッチ対象かどうか
     [SerializeField] float shrinkRate = 0.1f; // 一度のスワイプで縮小する割合
     [SerializeField] float minSwipeDistance = 10f; // 縮小判定とする最小移動距離
     [SerializeField] float minScale = 0.1f; // 最小スケールサイズ
+    [SerializeField] ComboManager combo;
+
+    void Start()
+    {
+        combo = GameObject.FindWithTag("GameController").GetComponent<ComboManager>();
+    }
 
     void Update()
     {
         // タッチの開始
         if (Input.GetMouseButtonDown(0))
         {
-            previousTouchPos = Input.mousePosition;
-            isTouching = true;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            // Raycastでタッチしたオブジェクトが自分自身かどうかを確認
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.gameObject == gameObject)
+                {
+                    isTouching = true;
+                    isTargetObject = true; // タッチ対象として認識
+                    previousTouchPos = Input.mousePosition;
+                }
+            }
         }
 
         // タッチ中の処理
-        if (isTouching && Input.GetMouseButton(0))
+        if (isTouching && isTargetObject && Input.GetMouseButton(0))
         {
             Vector2 currentTouchPos = Input.mousePosition;
             float swipeDistance = Vector2.Distance(currentTouchPos, previousTouchPos);
@@ -35,6 +53,7 @@ public class ShrinkOnSwipe : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isTouching = false;
+            isTargetObject = false; // タッチ対象リセット
         }
     }
 
@@ -50,8 +69,8 @@ public class ShrinkOnSwipe : MonoBehaviour
         }
         else
         {
+            combo.ConboPlus();
             Destroy(this.gameObject);
-            transform.localScale = new Vector3(minScale, minScale, minScale);
         }
     }
 }

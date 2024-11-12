@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class FlickScript : MonoBehaviour
+public class FlickObject : MonoBehaviour
 {
     Vector2 startPos;
     Vector2 endPos;
@@ -20,6 +20,8 @@ public class FlickScript : MonoBehaviour
     [SerializeField] Rigidbody rb;
     GameManeger gamemaneger;
     public Slider sliderPrefab; // スライダープレハブをアタッチ
+    [SerializeField]
+    ComboManager combo;
 
     private Slider sliderInstance; // スライダーのインスタンス
     private Canvas canvas; // Canvasの参照
@@ -27,6 +29,7 @@ public class FlickScript : MonoBehaviour
     private void Start()
     {
         gamemaneger = GameObject.FindWithTag("GameController").GetComponent<GameManeger>();
+        combo = GameObject.FindWithTag("GameController").GetComponent<ComboManager>();
         rb = GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
         Limit_RU = gamemaneger.spawnAreaRU;
@@ -125,6 +128,7 @@ public class FlickScript : MonoBehaviour
 
         if (viewportPosition.x < 0 || viewportPosition.x > 1 || viewportPosition.y < 0 || viewportPosition.y > 1)
         {
+            combo.ConboPlus();
             Destroy(gameObject);
             Destroy(sliderInstance.gameObject); // オブジェクトが削除されたらスライダーも削除
         }
