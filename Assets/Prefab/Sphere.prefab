@@ -134,6 +134,8 @@ MonoBehaviour:
   rb: {fileID: 0}
   sliderPrefab: {fileID: 6820640393007818112, guid: 98fc5bc3ea2c97d4782213e06bda3e04,
     type: 3}
+  combo: {fileID: 0}
+  moveSpead: 0.5
 --- !u!54 &534546114543834701
 Rigidbody:
   m_ObjectHideFlags: 0
