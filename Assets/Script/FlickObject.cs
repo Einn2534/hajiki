@@ -128,7 +128,7 @@ public class FlickObject : MonoBehaviour
 
         if (viewportPosition.x < 0 || viewportPosition.x > 1 || viewportPosition.y < 0 || viewportPosition.y > 1)
         {
-            combo.ConboPlus();
+            combo.ComboPlus();
             Destroy(gameObject);
             Destroy(sliderInstance.gameObject); // オブジェクトが削除されたらスライダーも削除
         }

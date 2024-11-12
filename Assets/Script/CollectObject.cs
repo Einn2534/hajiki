@@ -2,14 +2,19 @@ using UnityEngine;
 
 public class CollectObject : MonoBehaviour
 {
+    [SerializeField] ScoreManager score;
+    void Start()
+    {
+        score = GameObject.FindWithTag("GameController").GetComponent<ScoreManager>();
+    }
     void OnTriggerEnter(Collider other)
     {
-        // ƒXƒvƒ‰ƒCƒg‚ªƒIƒuƒWƒFƒNƒg‚ÉG‚ê‚½ê‡‚Ìˆ—
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«æŽ¥è§¦ã—ãŸã¨ãã®å‡¦ç†
         if (other.gameObject.CompareTag("Player"))
         {
-            // 3DƒIƒuƒWƒFƒNƒg‚ð‰ñŽû
-            Debug.Log("ƒIƒuƒWƒFƒNƒg‰ñŽû");
+            // ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤
             Destroy(gameObject);
+            score.ScorePlus(50);
         }
     }
 }

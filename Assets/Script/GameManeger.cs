@@ -4,26 +4,18 @@ using UnityEngine;
 
 public class GameManeger : MonoBehaviour
 {
-    [SerializeField]
-    int chaild;
-    [SerializeField]
-    GameObject[] kabidani;
-    [SerializeField]
-    int num;
-    [SerializeField]
-    public Vector3 spawnAreaLD;  
-    [SerializeField]
-    public Vector3 spawnAreaRU;  
-    [SerializeField]
-    float spawnInterval = 5.0f; // 時間間隔（秒）
+    [SerializeField] int chaild;
+    [SerializeField] GameObject[] kabidani;
+    [SerializeField] int num;
+    [SerializeField] public Vector3 spawnAreaLD;  
+    [SerializeField] public Vector3 spawnAreaRU;  
+    [SerializeField] float spawnInterval = 10.0f; // 時間間隔（秒）
     float timeElapsed = 0.0f; // 経過時間のカウント
     bool isTouching = false;
-    [SerializeField]
-    LayerMask floorLayer; 
-    [SerializeField]
-    int tapCount;
-    [SerializeField]
-    int tapCountMax;
+    [SerializeField] LayerMask floorLayer; 
+    [SerializeField] int tapCount;
+    [SerializeField] int tapCountMax;
+
     void Start()
     {
         chaild = this.transform.childCount;

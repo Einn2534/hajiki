@@ -119,5 +119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shrinkRate: 0.1
+  growRate: 0.1
   minSwipeDistance: 10
   minScale: 0.1
+  maxScale: 2
+  combo: {fileID: 0}
+  score: {fileID: 0}

@@ -5,34 +5,34 @@ public class DragObjectTopDown : MonoBehaviour
     private Vector3 offset;
     private float zCoord;
 
-    // �I�u�W�F�N�g���N���b�N���ꂽ�Ƃ��ɌĂ΂��
+    // オブジェクトがクリックされたときに呼び出される
     void OnMouseDown()
     {
-        // �I�u�W�F�N�g��z���W���L���i�J��������̋����j
+        // オブジェクトの位置をスクリーン座標に変換し、z座標を取得
         zCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
 
-        // �}�E�X�ƃI�u�W�F�N�g�̈ʒu�������v�Z
+        // マウス位置とオブジェクト位置の差分を計算してオフセットとして保持
         offset = gameObject.transform.position - GetMouseWorldPos();
     }
 
-    // �I�u�W�F�N�g���h���b�O����Ă���Ƃ��ɌĂ΂��
+    // オブジェクトがドラッグされている間、毎フレーム呼び出される
     void OnMouseDrag()
     {
-        // �}�E�X�̓����Ɋ�Â��ăI�u�W�F�N�g�𓮂���
+        // マウスの移動に合わせてオブジェクトの位置を更新（y座標は固定）
         Vector3 newPosition = GetMouseWorldPos() + offset;
         transform.position = new Vector3(newPosition.x, transform.position.y, newPosition.z);
     }
 
-    // �}�E�X�̃��[���h���W���擾����
+    // マウス位置をワールド座標に変換して返す
     private Vector3 GetMouseWorldPos()
     {
-        // �}�E�X�̃X�N���[�����W���擾
+        // マウス位置（スクリーン座標）を取得
         Vector3 mousePoint = Input.mousePosition;
 
-        // z���W��ݒ�
+        // z座標を設定してワールド座標の計算に使用
         mousePoint.z = zCoord;
 
-        // �X�N���[�����W�����[���h���W�ɕϊ����ĕԂ�
+        // スクリーン座標をワールド座標に変換して返す
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
 }

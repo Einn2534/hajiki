@@ -6,17 +6,24 @@ public class ScrubObject : MonoBehaviour
     bool isTouching = false;
     bool isTargetObject = false; // タッチ対象かどうか
     [SerializeField] float shrinkRate = 0.1f; // 一度のスワイプで縮小する割合
+    [SerializeField] float growRate = 0.01f; // 時間経過で拡大する割合
     [SerializeField] float minSwipeDistance = 10f; // 縮小判定とする最小移動距離
     [SerializeField] float minScale = 0.1f; // 最小スケールサイズ
+    [SerializeField] float maxScale = 2.0f; // 最大スケールサイズ
     [SerializeField] ComboManager combo;
+    [SerializeField] ScoreManager score;
 
     void Start()
     {
         combo = GameObject.FindWithTag("GameController").GetComponent<ComboManager>();
+        score = GameObject.FindWithTag("GameController").GetComponent<ScoreManager>();
     }
 
     void Update()
     {
+        // 時間経過で少しずつ拡大する処理
+        GrowObjectOverTime();
+
         // タッチの開始
         if (Input.GetMouseButtonDown(0))
         {
@@ -69,8 +76,21 @@ public class ScrubObject : MonoBehaviour
         }
         else
         {
-            combo.ConboPlus();
+            combo.ComboPlus();
+            score.ScorePlus(100);
             Destroy(this.gameObject);
+        }
+    }
+
+    // 時間経過でオブジェクトを拡大するメソッド
+    void GrowObjectOverTime()
+    {
+        Vector3 newScale = transform.localScale * (1f + growRate * Time.deltaTime);
+
+        // スケールが最大値を超えないように制限
+        if (newScale.x < maxScale && newScale.y < maxScale && newScale.z < maxScale)
+        {
+            transform.localScale = newScale;
         }
     }
 }

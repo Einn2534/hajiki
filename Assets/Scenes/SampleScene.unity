@@ -803,7 +803,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2
   tapCount: 0
-  tapCountMax: 5
+  tapCountMax: 3
 --- !u!114 &1137833639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -818,6 +818,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Combo: 0
   comboText: {fileID: 636432182}
+  comboTimer: 0
+  comboTimerLimit: 10
 --- !u!114 &1137833640
 MonoBehaviour:
   m_ObjectHideFlags: 0
