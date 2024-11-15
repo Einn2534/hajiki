@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class GameManeger : MonoBehaviour
 {
-    [SerializeField] int chaild;
-    [SerializeField] GameObject[] kabidani;
-    [SerializeField] int num;
-    [SerializeField] public Vector3 spawnAreaLD;  
-    [SerializeField] public Vector3 spawnAreaRU;  
+    [SerializeField] int chaild; // 子オブジェクトの数
+    [SerializeField] GameObject[] kabidani; // オブジェクト配列
+    [SerializeField] GameObject daniPrefab; // ダニ用のPrefab
+    [SerializeField] int num; // 一度に生成するオブジェクトの数
+    [SerializeField] public Vector3 spawnAreaLD; // 生成範囲 左下
+    [SerializeField] public Vector3 spawnAreaRU; // 生成範囲 右上
     [SerializeField] float spawnInterval = 10.0f; // 時間間隔（秒）
     float timeElapsed = 0.0f; // 経過時間のカウント
     bool isTouching = false;
-    [SerializeField] LayerMask floorLayer; 
-    [SerializeField] int tapCount;
-    [SerializeField] int tapCountMax;
+    [SerializeField] LayerMask floorLayer; // 床レイヤー
+    [SerializeField] int tapCount; // タップ回数
+    [SerializeField] int tapCountMax; // タップ回数の上限
+    EventManager eventmanager;
 
     void Start()
     {
         chaild = this.transform.childCount;
+        eventmanager = GetComponent<EventManager>();
     }
 
     void Update()
@@ -64,6 +67,7 @@ public class GameManeger : MonoBehaviour
                 1,
                 Random.Range(spawnAreaRU.z, spawnAreaLD.z)
             );
+            
             GameObject obj = Instantiate(kabidani[Random.Range(0, kabidani.Length)], randomPosition, Quaternion.identity);
             obj.transform.parent = this.transform;
         }

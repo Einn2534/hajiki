@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EventManager : MonoBehaviour
@@ -66,10 +67,23 @@ public class EventManager : MonoBehaviour
 
     void ActivateGimmick(int gimmickID)
     {
-    
+
         Debug.Log("Gimmick " + gimmickID + " を発生させました。");
-        
+
         // ギミックの処理をここで実装する
-        
+        switch (gimmickID)
+        {
+            case 0:
+                
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                break;
+        }
     }
 }
